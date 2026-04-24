@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/coingecko/*"
+  to = "/.netlify/functions/coingecko/:splat"
+  status = 200
