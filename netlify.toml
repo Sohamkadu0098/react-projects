@@ -9,3 +9,8 @@
   from = "/api/coingecko/*"
   to = "/.netlify/functions/coingecko/:splat"
   status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
