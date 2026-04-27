@@ -44,7 +44,7 @@ const Coin = () => {
   useEffect(() =>{
     fetchCoinData();
     fetchChartData();
-  },[])
+  },[coinId, currency])
   if(coinData && chartdata){
      return (
     <div className='coin'>

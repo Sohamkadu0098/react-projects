@@ -17,11 +17,13 @@ export async function handler(event) {
     };
   }
 
-  const splatPath = event.pathParameters?.splat || "";
-  const normalizedPath = (event.path || "")
-    .replace(/^\/\.netlify\/functions\/coingecko\/?/, "")
-    .replace(/^\/api\/coingecko\/?/, "");
-  const proxyPath = splatPath || normalizedPath;
+  // Robust path extraction - splat is reliable from Netlify redirect
+  const proxyPath =
+    event.pathParameters?.splat ||
+    (event.path || "")
+      .replace(/^\/(api\/coingecko|\.netlify\/functions\/coingecko)\/?/, "")
+      .replace(/^\//, "");
+
   if (!proxyPath) {
     return {
       statusCode: 400,
@@ -29,9 +31,10 @@ export async function handler(event) {
     };
   }
 
-  const queryString =
-    event.rawQuery ||
-    new URLSearchParams(event.queryStringParameters || {}).toString();
+  // Use standard queryStringParameters - rawQuery is not a standard Netlify field
+  const queryString = new URLSearchParams(
+    event.queryStringParameters || {}
+  ).toString();
   const targetUrl = `${API_BASE}/${proxyPath}${queryString ? `?${queryString}` : ""}`;
 
   try {
