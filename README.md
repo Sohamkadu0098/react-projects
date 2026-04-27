@@ -2,6 +2,19 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## Netlify deployment setup
+
+This app proxies CoinGecko requests through the Netlify function at
+`/.netlify/functions/coingecko` using the redirect defined in `netlify.toml`.
+
+Before deploying, add these environment variables in Netlify:
+
+- `COINGECKO_API_KEY` - your CoinGecko API key (required)
+- `COINGECKO_API_HEADER` - header name to send the key with (optional, defaults to `x-cg-demo-api-key`)
+
+If `COINGECKO_API_KEY` is missing, the function returns a `500` response with
+`Server API key not configured`.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
