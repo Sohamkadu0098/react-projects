@@ -9,3 +9,4 @@
   from = "/api/coingecko/*"
   to = "/.netlify/functions/coingecko/:splat"
   status = 200
+  status = 200
