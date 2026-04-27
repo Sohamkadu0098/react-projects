@@ -15,6 +15,21 @@ Before deploying, add these environment variables in Netlify:
 If `COINGECKO_API_KEY` is missing, the function returns a `500` response with
 `Server API key not configured`.
 
+## Vercel deployment setup (GitHub)
+
+This repo also includes a Vercel serverless function at
+`api/coingecko/[...splat].js` for production API proxying.
+
+1. Push your code to GitHub.
+2. Import the repo in Vercel.
+3. In project settings, add environment variables:
+   - `COINGECKO_API_KEY` (required)
+   - `COINGECKO_API_HEADER` (optional, defaults to `x-cg-demo-api-key`)
+4. Deploy.
+
+The frontend already calls `/api/coingecko/*`, so no app code change is needed.
+`vercel.json` is included for Vite build config and SPA route fallback.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
