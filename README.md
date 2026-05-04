@@ -1,44 +1,86 @@
-# React + Vite
+# Crypto Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite cryptocurrency tracking app that displays live market data and coin details with charting support.  
+The app fetches data through a backend proxy route for safer API key handling.
 
-## Netlify deployment setup
+## Features
 
-This app proxies CoinGecko requests through the Netlify function at
-`/.netlify/functions/coingecko` using the redirect defined in `netlify.toml`.
+- Top cryptocurrency table on home page
+- Search coins by name
+- Coin detail page for each asset
+- Market chart visualization using `react-google-charts`
+- Currency-aware prices from shared app context
+- API proxy integration for CoinGecko endpoints
 
-Before deploying, add these environment variables in Netlify:
+## Tech Stack
 
-- `COINGECKO_API_KEY` - your CoinGecko API key (required)
-- `COINGECKO_API_HEADER` - header name to send the key with (optional, defaults to `x-cg-demo-api-key`)
+- React
+- Vite
+- React Router
+- Context API
+- `react-google-charts`
+- Netlify Functions (for API proxy)
 
-If `COINGECKO_API_KEY` is missing, the function returns a `500` response with
-`Server API key not configured`.
+## Getting Started
 
-## Vercel deployment setup (GitHub)
+### 1) Clone and install
 
-This repo also includes a Vercel serverless function at
-`api/coingecko/[...splat].js` for production API proxying.
+```bash
+git clone https://github.com/Sohamkadu0098/react-projects.git
+cd react-projects
+npm install
+```
 
-1. Push your code to GitHub.
-2. Import the repo in Vercel.
-3. In project settings, add environment variables:
-   - `COINGECKO_API_KEY` (required)
-   - `COINGECKO_API_HEADER` (optional, defaults to `x-cg-demo-api-key`)
-4. Deploy.
+### 2) Run locally
 
-The frontend already calls `/api/coingecko/*`, so no app code change is needed.
-`vercel.json` is included for Vite build config and SPA route fallback.
+```bash
+npm run dev
+```
 
-Currently, two official plugins are available:
+### 3) Build and preview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm run build
+npm run preview
+```
 
-## React Compiler
+## Environment Variables
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+For API proxy deployments, set:
 
-## Expanding the ESLint configuration
+- `COINGECKO_API_KEY` (required)
+- `COINGECKO_API_HEADER` (optional, default: `x-cg-demo-api-key`)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Deployment Notes (Netlify)
+
+This project includes:
+
+- `netlify.toml` redirects `/api/coingecko/*` to Netlify function
+- `netlify/functions/coingecko.js` proxy handler
+
+If `COINGECKO_API_KEY` is missing, the function returns:
+
+- `500 Server API key not configured`
+
+## Project Structure
+
+```text
+src/
+  components/
+    Navbar/
+    Footer/
+    LineChart/
+  context/
+    Coinscontext.jsx
+  pages/
+    Home/
+    Coin/
+  lib/
+    api.js
+  App.jsx
+  main.jsx
+```
+
+## API Source
+
+- [CoinGecko API](https://www.coingecko.com/en/api)
