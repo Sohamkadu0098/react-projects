@@ -3,6 +3,19 @@
 A React + Vite cryptocurrency tracking app that displays live market data and coin details with charting support.  
 The app fetches data through a backend proxy route for safer API key handling.
 
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+![Deploy](https://img.shields.io/badge/Deploy-Netlify-00C7B7)
+![License](https://img.shields.io/badge/License-Not%20Specified-orange)
+
+## Live Demo
+
+- [trackingcryptoforlife.netlify.app](https://trackingcryptoforlife.netlify.app/)
+
+## Screenshots
+
+- Add homepage screenshot here: `docs/screenshots/crypto-home.png`
+- Add coin detail screenshot here: `docs/screenshots/crypto-coin.png`
+
 ## Features
 
 - Top cryptocurrency table on home page
@@ -80,6 +93,13 @@ src/
   App.jsx
   main.jsx
 ```
+
+## What I Learned
+
+- Managing app-wide state (currency and coin data) using Context API
+- Building route-driven detail pages for dynamic coin IDs
+- Handling asynchronous API + chart data loading with better UX states
+- Deploying with a serverless proxy to protect API key usage
 
 ## API Source
 
